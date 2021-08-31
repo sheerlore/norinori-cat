@@ -1,0 +1,15 @@
+#click-field {
+  width: 220px;
+  height: 100px;
+  margin: 0 auto;
+  padding: 20px;
+
+  color: #666;
+  text-align: center;
+  line-height: 100px;
+
+  border: dotted 4px #666;
+  border-radius: 20px;
+
+  user-select: none;
+}
