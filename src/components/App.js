@@ -6,8 +6,8 @@ import ClickField from './ClickField/ClickField';
 
 let posX = 0;
 let posY = 0;
-let width = 320;
-let height = 320;
+let width = 380;
+let height = 400;
 
 function App() {
   console.log('render <App />');
