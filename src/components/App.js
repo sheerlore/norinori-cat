@@ -6,13 +6,13 @@ import ClickField from './ClickField/ClickField';
 
 let posX = 0;
 let posY = 0;
-let width = 380;
+let width = 300;
 let height = 400;
 
 function App() {
   console.log('render <App />');
   const [tickFlag, setTickFlag] = useState(1);
-  const [speed, setSpeed] = useState("5");
+  const [bpm, setBpm] = useState(120);
 
   const changeSVG = () => {
     if (tickFlag === 0) {
@@ -27,19 +27,27 @@ function App() {
   }
 
   const returnSpeed = () => {
-    let range = document.getElementById('speed-range');
-    setSpeed(String(10 - range.value));
+    let range = document.getElementById('bpm-range');
+    setBpm(range.value);
+  }
+
+  const bpmToSecondsStr = (bpm) => {
+    return (60 / bpm / 2 ).toFixed(2);
   }
 
 
   return (
     <div className="App">
-      <div>
-        <p>ニャーン meow mew</p>
-      </div>
-      <Cat width={width} height={height} posX={posX} posY={posY} speed={speed} />
+      <Cat width={width} height={height} posX={posX} posY={posY} speed={bpmToSecondsStr(bpm)} />
       <ClickField id="click-field" onClick={changeSVG} />
-      <input onChange={returnSpeed} id="speed-range" type="range" name="speed" min="1" max="9"step="1"/>
+      <h1>{bpm}</h1>
+      <input 
+        id="bpm-range" 
+        onChange={returnSpeed} 
+        type="range" 
+        name="bpm" 
+        min="40" max="218"step="1" 
+        defaultValue="120"/>
     </div>
   );
 }

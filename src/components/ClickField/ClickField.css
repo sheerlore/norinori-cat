@@ -1,5 +1,7 @@
 #click-field {
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
+  min-width: 200px;
   height: 100px;
   margin: 0 auto;
   padding: 20px;

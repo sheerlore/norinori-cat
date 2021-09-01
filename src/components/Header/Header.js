@@ -3,7 +3,7 @@ import './Header.css'
 function Header() {
   return (
     <header className="top-header">
-      <p>norinori-ball</p>
+      <span className="top-header_title">norinori-cat</span>
     </header>
   );
 }

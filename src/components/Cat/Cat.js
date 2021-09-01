@@ -1,10 +1,13 @@
+import './Cat.css'
+
 const Cat = (props) => {
   return (
-    <svg
-      viewBox="184 63.5 299 404"
-      // viewBox="180 60 300 400"
-      width={props.width}
-      height={props.height}>
+    <div className="svg-display">
+      <svg
+        viewBox="184 63.5 299 404"
+        // viewBox="180 60 300 400"
+        width={props.width}
+        height={props.height}>
         <path
           d="M467 464.5
              C461.49 389.26 458.04 342.24 456.66 323.43
@@ -24,7 +27,7 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-          ></path>
+        ></path>
 
         <path
           d="M300 175.83
@@ -38,7 +41,7 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="0"
-          ></path>
+        ></path>
 
         <path
           d="M375 175.83
@@ -52,7 +55,7 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="0"
-          ></path>
+        ></path>
 
         <path
           d="M340.54 194.48
@@ -69,7 +72,7 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-          ></path>
+        ></path>
 
         <path
           d="M319.4 215
@@ -82,7 +85,7 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-          ></path>
+        ></path>
 
         <path
           d="M339.69 215
@@ -95,7 +98,7 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-          ></path>
+        ></path>
 
         <path
           d="M273 119.17
@@ -108,7 +111,7 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-          ></path>
+        ></path>
 
         <path
           d="M390 117.89
@@ -121,7 +124,7 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-          ></path>
+        ></path>
 
         <path
           d="M185 172.25 L283 195.75"
@@ -131,7 +134,7 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-          ></path>
+        ></path>
 
         <path
           d="M186 200 L282 203.75"
@@ -141,7 +144,7 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-          ></path>
+        ></path>
 
         <path
           d="M187 226.25 L280 213.25"
@@ -151,7 +154,7 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-          ></path>
+        ></path>
 
         <path
           d="M480 175.75 L379 193.75"
@@ -161,7 +164,7 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-          ></path>
+        ></path>
 
         <path
           d="M480 202.25 L380 203.25"
@@ -171,7 +174,7 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-          ></path>
+        ></path>
 
         <path
           d="M477 224.75 L380 212.25"
@@ -181,30 +184,63 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-          ></path>
+        ></path>
+
+        <rect>
+          <animate
+            id="o1"
+            begin="0;o1.end"
+            dur={String(Number(props.speed) * 2) + "s"}
+            attributeName="visibility"
+            from="hide" to="hide" />
+        </rect>
 
         <path
-          d="M370 280
-             L331.25 286.25
-             L295 280"
           id="ago"
           opacity="1"
           fillOpacity="0"
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-          >
-          <animate 
-          attributeName="d"
-          to="M370 300
+        >
+          <animate
+            begin="o1.begin"
+            attributeName="d"
+            from="M370 280
+                  L331.25 286.25
+                  L295 280"
+            to="M370 300
                   L331.25 306.25
                   L295 300"
-          dur=".4s"
-          repeatCount="indefinite"
+            dur={props.speed + "s"}
+          // repeatCount="indefinite"
           />
-          </path>
-    </svg>
+        </path>
+
+        <path
+          opacity="1"
+          fillOpacity="0"
+          stroke="#000000"
+          strokeWidth="2"
+          strokeOpacity="1"
+        >
+          <animate
+            begin={"o1.begin+" + props.speed + "s"}
+            attributeName="d"
+            from="M370 300
+                  L331.25 306.25
+                  L295 300"
+            to="M370 280
+                L331.25 286.25
+                L295 280"
+            dur={props.speed + "s"}
+          // repeatCount="indefinite"
+          />
+        </path>
+      </svg>
+    </div>
   );
+
 }
 
 export default Cat;
