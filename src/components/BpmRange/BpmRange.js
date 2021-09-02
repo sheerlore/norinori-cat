@@ -1,6 +1,8 @@
 import './BpmRange.css'
 
 function BpmRange(props) {
+
+
   return (
     <div className="app-ele">
       <input

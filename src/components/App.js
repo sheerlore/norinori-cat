@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Cat from '../components/Cat/Cat'
 import BpmForm from './BpmForm/BpmForm';
 import BpmRange from './BpmRange/BpmRange';
+// import SwitchMode from './SwitchMode/SwitchMode';
 // import './ClickField/ClickField.css'
 // import ClickField from './ClickField/ClickField';
 
@@ -14,9 +15,9 @@ const bpmDefault = 120;
 const bpmMin = 40;
 const bpmMax = 218;
 
+
 function App() {
   const [bpm, setBpm] = useState(120);
-
 
   const changeBpmForm = () => {
     let bpmForm = document.getElementById("bpm-form");

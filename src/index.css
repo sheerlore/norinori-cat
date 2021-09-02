@@ -17,3 +17,10 @@ p {
   margin: 0;
   padding: 0;
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000;
+    color: #fff;
+  }
+}
