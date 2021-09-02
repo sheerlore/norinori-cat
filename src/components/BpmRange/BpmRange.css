@@ -1,0 +1,45 @@
+#bpm-range {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  height: 2px;
+  width: 280px;
+  border-radius: 10px;
+  border: solid 2px #fad0c4;
+  border-image: linear-gradient(to right, #fad0c4 0%, #ff353b 100%);
+  border-image-slice: 1;  border-image: ;
+  outline: 0;
+}
+
+#bpm-range:focus {
+  box-shadow: 0 0 3px #ddd;
+}
+
+#bpm-range::-webkit-slider-runnable-track {
+  height: 16px;
+  background-color: transparent;
+}
+
+#bpm-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  transform: scale(1.3);
+  width: 32px;
+  height: 32px;
+  margin-top: -10px;
+  border-radius: 10px;
+  background-image: url('./cathand.svg');
+}
+
+#bpm-range::-moz-range-thumb {
+  transform: scale(1.3);
+  width: 32px;
+  height: 32px;
+  margin-top: -10px;
+  border-radius: 10px;
+  background-image: url('./cathand.svg');
+}
+
+#bpm-range::-moz-focus-outer {
+  border: 0;
+}

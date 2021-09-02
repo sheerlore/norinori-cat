@@ -1,53 +1,63 @@
 import './App.css';
-import Cat from '../components/Cat/Cat'
-import './ClickField/ClickField.css'
 import { useState } from 'react';
-import ClickField from './ClickField/ClickField';
+import Cat from '../components/Cat/Cat'
+import BpmForm from './BpmForm/BpmForm';
+import BpmRange from './BpmRange/BpmRange';
+// import './ClickField/ClickField.css'
+// import ClickField from './ClickField/ClickField';
 
-let posX = 0;
-let posY = 0;
-let width = 300;
-let height = 400;
+const posX = 0;
+const posY = 0;
+const width = 300;
+const height = 400;
+const bpmDefault = 120;
+const bpmMin = 40;
+const bpmMax = 218;
 
 function App() {
-  console.log('render <App />');
-  const [tickFlag, setTickFlag] = useState(1);
   const [bpm, setBpm] = useState(120);
 
-  const changeSVG = () => {
-    if (tickFlag === 0) {
-      posX = 0;
-      posY = 0;
-      setTickFlag(1);
-    } else if (tickFlag === 1) {
-      posX = 0;
-      posY = height / 2;
-      setTickFlag(0);
-    }
+
+  const changeBpmForm = () => {
+    let bpmForm = document.getElementById("bpm-form");
+    let bpmRange = document.getElementById("bpm-range");
+    let v = bpmForm.value;
+    if (v < bpmMin || v > bpmMax || v === null) return;
+    setBpm(Number(v));
+    bpmRange.value = String(v);
   }
 
-  const returnSpeed = () => {
-    let range = document.getElementById('bpm-range');
-    setBpm(range.value);
+  const changeBpmRange = () => {
+    let bpmForm = document.getElementById("bpm-form");
+    let bpmRange = document.getElementById("bpm-range");
+    let v = bpmRange.value;
+    if (v === null) return;
+    setBpm(Number(v));
+    bpmForm.value = String(v);
   }
 
-  const bpmToSecondsStr = (bpm) => {
-    return (60 / bpm / 2 ).toFixed(2);
+  const bpmToSecondsStr = (bpm, bar = 4) => {
+    let b = Math.floor(bar / 4); // 拍数を計算する
+    return (60 / bpm / b + 0.05).toFixed(2);
   }
 
 
   return (
     <div className="App">
-      <Cat width={width} height={height} posX={posX} posY={posY} speed={bpmToSecondsStr(bpm)} />
-      <ClickField id="click-field" onClick={changeSVG} />
-      <h1>{bpm}</h1>
-      <input 
-        id="bpm-range" 
-        onChange={returnSpeed} 
-        type="range" 
-        name="bpm" 
-        min="40" max="218"step="1" 
-        defaultValue="120"/>
+      <Cat
+        width={width} height={height}
+        posX={posX} posY={posY}
+        speed={bpmToSecondsStr(bpm)}
+      />
+      {/* <ClickField id="click-field" onClick={changeSVG} /> */}
+      <BpmForm
+        min={bpmMin} max={bpmMax} defaultValue={bpmDefault}
+        onChange={changeBpmForm}
+      />
+      <BpmRange
+        min={bpmMin} max={bpmMax} defaultValue={bpmDefault}
+        onChange={changeBpmRange}
+      />
     </div>
   );
 }

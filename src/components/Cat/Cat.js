@@ -2,12 +2,24 @@ import './Cat.css'
 
 const Cat = (props) => {
   return (
-    <div className="svg-display">
+    <div className="svg-display app-ele">
       <svg
         viewBox="184 63.5 299 404"
         // viewBox="180 60 300 400"
         width={props.width}
         height={props.height}>
+
+        {/* 時間調整用 */}
+        <rect>
+          <animate
+            id="o1"
+            begin="0;o1.end"
+            dur={String(Number(props.speed) * 2) + "s"}
+            attributeName="visibility"
+            from="hide" to="hide" />
+        </rect>
+
+        {/* 体のライン */}
         <path
           d="M467 464.5
              C461.49 389.26 458.04 342.24 456.66 323.43
@@ -29,6 +41,8 @@ const Cat = (props) => {
           strokeOpacity="1"
         ></path>
 
+
+        {/* 右目 */}
         <path
           d="M300 175.83
              C300 179.6 296.94 182.67 293.17 182.67
@@ -43,6 +57,7 @@ const Cat = (props) => {
           strokeOpacity="0"
         ></path>
 
+        {/* 左目 */}
         <path
           d="M375 175.83
              C375 179.6 371.94 182.67 368.17 182.67
@@ -57,6 +72,8 @@ const Cat = (props) => {
           strokeOpacity="0"
         ></path>
 
+
+        {/* 鼻 */}
         <path
           d="M340.54 194.48
              C342.24 192.86 341.1 190 338.75 190
@@ -74,6 +91,7 @@ const Cat = (props) => {
           strokeOpacity="1"
         ></path>
 
+        {/* 鼻の左側のライン */}
         <path
           d="M319.4 215
              L326.58 212.05
@@ -87,6 +105,8 @@ const Cat = (props) => {
           strokeOpacity="1"
         ></path>
 
+
+        {/* 鼻の右側のライン */}
         <path
           d="M339.69 215
              L332.93 211.92
@@ -100,6 +120,8 @@ const Cat = (props) => {
           strokeOpacity="1"
         ></path>
 
+
+        {/* 左耳 */}
         <path
           d="M273 119.17
              L240 121.5
@@ -112,7 +134,8 @@ const Cat = (props) => {
           strokeWidth="2"
           strokeOpacity="1"
         ></path>
-
+        
+        {/* 右耳 */}
         <path
           d="M390 117.89
              L420 121.5
@@ -126,6 +149,7 @@ const Cat = (props) => {
           strokeOpacity="1"
         ></path>
 
+        {/* 左のひげ */}
         <path
           d="M185 172.25 L283 195.75"
           id="hige-l1"
@@ -156,6 +180,7 @@ const Cat = (props) => {
           strokeOpacity="1"
         ></path>
 
+        {/* 右のひげ */}
         <path
           d="M480 175.75 L379 193.75"
           id="hige-r1"
@@ -186,15 +211,8 @@ const Cat = (props) => {
           strokeOpacity="1"
         ></path>
 
-        <rect>
-          <animate
-            id="o1"
-            begin="0;o1.end"
-            dur={String(Number(props.speed) * 2) + "s"}
-            attributeName="visibility"
-            from="hide" to="hide" />
-        </rect>
 
+        {/* あごのよくわからない部分 */}
         <path
           id="ago"
           opacity="1"
@@ -236,6 +254,7 @@ const Cat = (props) => {
             dur={props.speed + "s"}
           // repeatCount="indefinite"
           />
+          
         </path>
       </svg>
     </div>

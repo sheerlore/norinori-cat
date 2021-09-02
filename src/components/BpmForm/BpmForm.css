@@ -1,0 +1,13 @@
+
+#bpm-form {
+  width: 120px;
+  font-size: 3rem;
+  font-weight: 800;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: center;
+  border: none;
+  outline: none;
+  padding-bottom: 4px;
+  box-sizing: border-box;
+}
+
