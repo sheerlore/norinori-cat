@@ -10,7 +10,7 @@ import BpmRange from './BpmRange/BpmRange';
 const posX = 0;
 const posY = 0;
 const width = 300;
-const height = 400;
+const height = 600;
 const bpmDefault = 120;
 const bpmMin = 40;
 const bpmMax = 218;

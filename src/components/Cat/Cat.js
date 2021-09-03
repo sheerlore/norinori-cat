@@ -4,8 +4,8 @@ const Cat = (props) => {
   return (
     <div className="svg-display app-ele">
       <svg
-        viewBox="184 63.5 299 404"
-        // viewBox="180 60 300 400"
+        viewBox="190 100 300 400"
+        // viewBox="180 70 300 400"
         width={props.width}
         height={props.height}>
 
@@ -21,7 +21,19 @@ const Cat = (props) => {
 
         {/* 体のライン */}
         <path
-          d="M467 464.5
+          // d="M467 564.5
+          //    C461.49 389.26 458.04 342.24 456.66 323.43
+          //    C450.24 235.72 434.6 148.93 410 64.5
+          //    C410 64.5 410 64.5 410 64.5
+          //    C398.94 83.61 392.02 95.56 389.25 100.33
+          //    C381.67 113.43 367.68 121.5 352.54 121.5
+          //    C339.03 121.5 323.74 121.5 310.43 121.5
+          //    C294.63 121.5 279.96 113.3 271.69 99.83
+          //    C268.8 95.12 261.57 83.34 250 64.5
+          //    C250 64.5 250 64.5 250 64.5
+          //    C224.77 148.82 210.37 236.02 207.15 323.97
+          //    C206.46 342.71 204.75 389.55 202 564.5 z"
+          d="M467 564.5
              C461.49 389.26 458.04 342.24 456.66 323.43
              C450.24 235.72 434.6 148.93 410 64.5
              C410 64.5 410 64.5 410 64.5
@@ -32,15 +44,71 @@ const Cat = (props) => {
              C268.8 95.12 261.57 83.34 250 64.5
              C250 64.5 250 64.5 250 64.5
              C224.77 148.82 210.37 236.02 207.15 323.97
-             C206.46 342.71 204.75 389.55 202 464.5"
+
+             C206.46 342.71 204.75 389.55 202 564.5 z"
           id="body-line"
           opacity="1"
-          fillOpacity="0"
+          fillOpacity="1"
+          fill="#ffffff"
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
         ></path>
 
+        {/* 8line */}
+        <circle cx="268.8" cy="95.12" r="3" fill="red" />
+        <circle cx="261.57" cy="83.34" r="3" fill="red" />
+        <circle cx="250" cy="64.5" r="3" fill="red" />
+
+        {/* 9line */}
+        <circle cx="250" cy="64.5" r="5" fill="red" />
+        <circle cx="250" cy="64.5" r="5" fill="red" />
+        <circle cx="250" cy="64.5" r="5" fill="red" />
+
+        {/* 10line */}
+        <circle cx="224.77" cy="148.82" r="5" fill="red" />
+        <circle cx="210.37" cy="236.02" r="5" fill="red" />
+        <circle cx="207.15" cy="323.97" r="5" fill="red" />
+
+        {/* 11line */}
+        <circle cx="206.46" cy="342.71" r="5" fill="red" />
+        <circle cx="204.75" cy="389.55" r="5" fill="red" />
+        <circle cx="202" cy="564.5" r="5" fill="red" />
+
+        {/* 1line */}
+        <circle cx="461.49" cy="389.26" r="5" />
+        <circle cx="458.04" cy="342.24" r="5" />
+        <circle cx="456.66" cy="323.43" r="5" />
+
+        {/* 2line */}
+        <circle cx="450.24" cy="253.72" r="5" fill="red" />
+        <circle cx="434.6" cy="148.93" r="5" fill="red" />
+        <circle cx="410" cy="64.5" r="5" fill="red" />
+
+        {/* 3line */}
+        <circle cx="410" cy="64.5" r="5" fill="red" />
+        <circle cx="410" cy="64.5" r="5" fill="red" />
+        <circle cx="410" cy="64.5" r="5" fill="red" />
+
+        {/* 4line */}
+        <circle cx="398.94" cy="83.61" r="3" fill="red" />
+        <circle cx="392.02" cy="95.56" r="3" fill="red" />
+        <circle cx="389.25" cy="100.33" r="3" fill="red" />
+
+        {/* 5line */}
+        <circle cx="381.67" cy="113.43" r="3" fill="blue" />
+        <circle cx="367.68" cy="121.5" r="3" fill="blue" />
+        <circle cx="352.54" cy="121.5" r="3" fill="blue" />
+
+        {/* 6line */}
+        <circle cx="339.03" cy="121.5" r="3" fill="red" />
+        <circle cx="323.74" cy="121.5" r="3" fill="red" />
+        <circle cx="310.43" cy="121.5" r="3" fill="red" />
+
+        {/* 7line */}
+        <circle cx="294.63" cy="121.5" r="3" fill="blue" />
+        <circle cx="279.96" cy="113.3" r="3" fill="blue" />
+        <circle cx="271.69" cy="99.83" r="3" fill="blue" />
 
         {/* 右目 */}
         <path
