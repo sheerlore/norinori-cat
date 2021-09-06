@@ -4,6 +4,7 @@ const Cat = (props) => {
   return (
     <div className="svg-display app-ele">
       <svg
+        id="cat-root"
         viewBox={`0 40 ${props.width} ${props.height}`}
         width={props.width}
         height={props.height}>
@@ -162,7 +163,7 @@ const Cat = (props) => {
         {/* 左目 */}
         <circle
           cx="215" cy="180" r="6"
-          id="right-eye"
+          id="left-eye"
           opacity="1"
           fill="#000000"
           stroke="#000000"
@@ -229,6 +230,37 @@ const Cat = (props) => {
             ></animate>
           </path>
         </g>
+
+        {/* 口 */}
+        <path
+        id="cat-mouth"
+        d="M150 220
+           Q180 230,215 220
+           Q180 250,150 220"
+        stroke="#333333"
+        strokeWidth="2"
+        fill="#fffc2e"
+        transform="rotate(-5, 180, 230)"
+        style={{display: 'none'}}
+        >
+          <animate
+          attributeName="d"
+          values="
+            M150 220
+            Q180 230,215 220
+            Q180 250,150 220;
+            M150 230
+            Q180 240,215 230
+            Q180 260,150 230;
+            M150 220
+            Q180 230,215 220
+            Q180 250,150 220;
+          "
+          dur={props.speed + "s"}
+          repeatCount="indefinite"
+          ></animate>
+        </path>
+
 
         {/* 左のひげ */}
         <g>

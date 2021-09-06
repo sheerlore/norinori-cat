@@ -1,0 +1,19 @@
+#darkmode-btn {
+  width: 60px;
+  height: 60px;
+  background-color: #95e1ff;
+  color: #fffc2e;
+
+  display: inline-block;
+  text-decoration: none;
+  line-height: 60px;
+  font-size: 28px;
+
+  border: none;
+  border-radius: 50%;
+  overflow: hidden;
+  outline: none;
+  box-sizing: border-box;
+
+  user-select: none;
+}

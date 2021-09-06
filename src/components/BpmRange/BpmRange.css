@@ -12,6 +12,10 @@
   outline: 0;
 }
 
+#bpm-range:hover {
+  cursor: pointer;
+}
+
 #bpm-range:focus {
   box-shadow: 0 0 3px #ddd;
 }

@@ -1,8 +1,12 @@
 .App {
   text-align: center;
   font-weight: bold;
+
+  position: relative;
+
+  margin-bottom: 30vh;
 }
 
 .app-ele {
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 }
