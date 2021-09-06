@@ -6,6 +6,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: rgb(255, 224, 212);
 }
 
 h1, h2, h3, h4, h5 {
@@ -16,11 +18,4 @@ h1, h2, h3, h4, h5 {
 p {
   margin: 0;
   padding: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #000;
-    color: #fff;
-  }
 }

@@ -7,7 +7,7 @@ function BpmForm(props) {
           id="bpm-form"
           type="text"
           inputMode="numeric"
-          pattern='\d'
+          pattern='\d*'
           name="bpmtext"
           onChange={props.onChange}
           min={props.min} max={props.max} step="1"

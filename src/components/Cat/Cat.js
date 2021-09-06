@@ -4,7 +4,7 @@ const Cat = (props) => {
   return (
     <div className="svg-display app-ele">
       <svg
-        viewBox={`0 0 ${props.width} ${props.height}`}
+        viewBox={`0 40 ${props.width} ${props.height}`}
         width={props.width}
         height={props.height}>
 
@@ -63,7 +63,7 @@ const Cat = (props) => {
              "
           id="body-line"
           opacity="1"
-          fillOpacity="0"
+          fillOpacity="1"
           fill="#ffffff"
           stroke="#000000"
           strokeWidth="2"
@@ -188,7 +188,7 @@ const Cat = (props) => {
             id="nose"
             opacity="1"
             fillOpacity="1"
-            fill="#ffffff"
+            fill="rgb(255, 120, 180)"
             stroke="#000000"
             strokeWidth="2"
             strokeOpacity="1"

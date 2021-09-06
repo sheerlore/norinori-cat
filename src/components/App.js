@@ -10,7 +10,7 @@ import BpmRange from './BpmRange/BpmRange';
 const posX = 0;
 const posY = 0;
 const width = 360;
-const height = 600;
+const height = 550;
 const bpmDefault = 120;
 const bpmMin = 40;
 const bpmMax = 218;
@@ -23,18 +23,20 @@ function App() {
     let bpmForm = document.getElementById("bpm-form");
     let bpmRange = document.getElementById("bpm-range");
     let v = bpmForm.value;
-    if (v < bpmMin || v > bpmMax || v === null) return;
-    setBpm(Number(v));
-    bpmRange.value = String(v);
+    if (String(v).match(/^\d+$/) && v > bpmMin && v < bpmMax && v !== null) {
+      setBpm(Number(v));
+      bpmRange.value = String(v);
+    }
   }
 
   const changeBpmRange = () => {
     let bpmForm = document.getElementById("bpm-form");
     let bpmRange = document.getElementById("bpm-range");
     let v = bpmRange.value;
-    if (v === null) return;
-    setBpm(Number(v));
-    bpmForm.value = String(v);
+    if (v !== null) {
+      setBpm(Number(v));
+      bpmForm.value = String(v);
+    }
   }
 
   const bpmToSecondsStr = (bpm, bar = 4) => {
@@ -45,16 +47,16 @@ function App() {
 
   return (
     <div className="App">
+      <BpmForm
+        min={bpmMin} max={bpmMax} defaultValue={bpmDefault}
+        onChange={changeBpmForm}
+      />
       <Cat
         width={width} height={height}
         posX={posX} posY={posY}
         speed={bpmToSecondsStr(bpm)}
       />
       {/* <ClickField id="click-field" onClick={changeSVG} /> */}
-      <BpmForm
-        min={bpmMin} max={bpmMax} defaultValue={bpmDefault}
-        onChange={changeBpmForm}
-      />
       <BpmRange
         min={bpmMin} max={bpmMax} defaultValue={bpmDefault}
         onChange={changeBpmRange}
