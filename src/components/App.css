@@ -8,5 +8,17 @@
 }
 
 .app-ele {
+  margin: 0 auto;
   margin-bottom: 32px;
+}
+
+
+.control-1 {
+  width: 100%;
+  max-width: 300px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
 }

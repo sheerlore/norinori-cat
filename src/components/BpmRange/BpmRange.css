@@ -2,14 +2,31 @@
   box-sizing: border-box;
   -webkit-appearance: none;
   appearance: none;
-  background-color: #fff;
+  /* background-color: #fff; */
   height: 2px;
   width: 280px;
   border-radius: 10px;
   border: solid 2px #fad0c4;
   border-image: linear-gradient(to right, #fad0c4 0%, #ff353b 100%);
-  border-image-slice: 1;  border-image: ;
+  border-image-slice: 1; 
   outline: 0;
+
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#bpm-range::after {
+  content: '218';
+  position: relative;
+  right: -10px;
+  top: -20px;
+}
+
+#bpm-range::before {
+  content: '40';
+  position: relative;
+  left: -10px;
+  top: -20px;
 }
 
 #bpm-range:hover {

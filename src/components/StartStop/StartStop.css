@@ -1,0 +1,23 @@
+#startstop-btn {
+  width: 60px;
+  height: 60px;
+
+  display: inline-block;
+  text-decoration: none;
+  line-height: 60px;
+  font-size: 28px;
+
+  border: 1px solid #aeaeae;
+  outline: none;
+  border-radius: 50%;
+  overflow: hidden;
+  box-sizing: border-box;
+  user-select: none;
+
+  background-color: #fefefe;
+}
+
+#startstop-btn img {
+  display: block;
+  position: relative;
+}

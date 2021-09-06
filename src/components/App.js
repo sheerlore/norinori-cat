@@ -4,6 +4,7 @@ import Cat from '../components/Cat/Cat'
 import BpmForm from './BpmForm/BpmForm';
 import BpmRange from './BpmRange/BpmRange';
 import DarkModeBtn from './DarkModeBtn/DarkModeBtn';
+import StartStop from './StartStop/StartStop'
 // import SwitchMode from './SwitchMode/SwitchMode';
 // import './ClickField/ClickField.css'
 // import ClickField from './ClickField/ClickField';
@@ -18,46 +19,95 @@ const bpmMax = 218;
 
 
 function App() {
-  const [bpm, setBpm] = useState(120);
+  const [bpm, setBpm] = useState({"now": 0.01, "pre": bpmDefault});
   const [mode, setMode] = useState('light');
+  const [control, setControl] = useState('stop');
 
   const changeBpmForm = () => {
-    let bpmForm = document.getElementById("bpm-form");
-    let bpmRange = document.getElementById("bpm-range");
+    const bpmForm = document.getElementById("bpm-form");
+    const bpmRange = document.getElementById("bpm-range");
+    let prebpm = bpm["now"];
     let v = bpmForm.value;
-    if (String(v).match(/^\d+$/) && v > bpmMin && v < bpmMax && v !== null) {
-      setBpm(Number(v));
-      bpmRange.value = String(v);
+    if (String(v).match(/^\d+$/) && v > bpmMin && v < bpmMax && v !== null && control !== 'stop') {
+      setBpm(
+        {
+          "pre": prebpm,
+          "now": Number(v)
+        }
+      );
     }
+    bpmRange.value = String(v);
   }
 
   const changeBpmRange = () => {
-    let bpmForm = document.getElementById("bpm-form");
-    let bpmRange = document.getElementById("bpm-range");
+    const bpmForm = document.getElementById("bpm-form");
+    const bpmRange = document.getElementById("bpm-range");
+    let prebpm = bpm["now"];
     let v = bpmRange.value;
-    if (v !== null) {
-      setBpm(Number(v));
-      bpmForm.value = String(v);
+    if (v !== null && control !== 'stop') {
+      setBpm(
+        {
+          "pre": prebpm,
+          "now": Number(v)
+        }
+      );
     }
+    bpmForm.value = String(v);
   }
 
   const bpmToSecondsStr = (bpm, bar = 4) => {
-    let b = Math.floor(bar / 4); // 拍数を計算する
+    // if(bpm === 1) {
+    //   return (0).toFixed(2);
+    // }
+    let b = Math.floor(bar / 4); // 拍数を計算する ? / 4
     return (60 / bpm / b).toFixed(2);
+  }
+
+  const SwitchPlay = () => {
+    const playBtn = document.getElementById('startstop-btn');
+    const playBtnImg = document.querySelector('#startstop-btn img');
+
+    const bpmForm = document.getElementById("bpm-form");
+    let vf = bpmForm.value;
+    let nowbpm = bpm.now;
+    if (control === 'play') {
+      playBtn.innerHTML = '<img src="./play.png" alt="play" />';
+      setControl('stop');
+      setBpm(
+        {
+          "pre": nowbpm,
+          "now": 0.01 
+        }
+      );
+    } else if (control === 'stop') {
+      playBtn.innerHTML = '<img src="./stop.png" alt="stop" />';
+      setControl('play');
+      setBpm(
+        {
+          "pre": 0.01,
+          "now": vf,
+        }
+      );
+    }
   }
 
   const switchDarkMode = () => {
     const body = document.body;
     const darkBtn = document.getElementById('darkmode-btn');
+    const playBtn = document.getElementById('startstop-btn');
+    const bpmRange = document.getElementById("bpm-range");
     const catBodyLine = document.getElementById('body-line');
     const catEyeR = document.getElementById('right-eye');
     const catEyeL = document.getElementById('left-eye');
     const catMou = document.getElementById('cat-mouth');
 
-    if(mode === 'light') {
+    if (mode === 'light') {
       // ボタン
       darkBtn.textContent = '☽';
       darkBtn.style.backgroundColor = "#283033";
+      playBtn.style.backgroundColor = "#afafaf"
+      bpmRange.style.color = '#fefefe';
+
       // 全体
       body.style.backgroundColor = "#121121";
       body.style.color = "#fefefe";
@@ -73,6 +123,8 @@ function App() {
       // ボタン
       darkBtn.textContent = '☀';
       darkBtn.style.backgroundColor = "#95e1ff";
+      playBtn.style.backgroundColor = "#fefefe"
+      bpmRange.style.color = '#000000';
       // 全体
       body.style.backgroundColor = "#fefefe";
       body.style.color = "#121121";
@@ -92,9 +144,9 @@ function App() {
       <Cat
         width={width} height={height}
         posX={posX} posY={posY}
-        speed={bpmToSecondsStr(bpm, 4)}
+        speed={bpmToSecondsStr(bpm.now)}
       />
-      {/* <ClickField id="click-field" onClick={changeSVG} /> */}
+      {/* <ClickField id="click-field" /> */}
       <BpmForm
         min={bpmMin} max={bpmMax} defaultValue={bpmDefault}
         onChange={changeBpmForm}
@@ -103,7 +155,10 @@ function App() {
         min={bpmMin} max={bpmMax} defaultValue={bpmDefault}
         onChange={changeBpmRange}
       />
-      <DarkModeBtn onClick={switchDarkMode} />
+      <div className="app-ele control-1">
+        <StartStop onClick={SwitchPlay} type={control} />
+        <DarkModeBtn onClick={switchDarkMode} mode={mode} />
+      </div>
     </div>
   );
 }
