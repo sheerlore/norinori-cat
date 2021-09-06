@@ -5,8 +5,7 @@
 }
 
 .top-header_title {
-  width: 20%;
-
+  width:fit-content;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bold;
   font-size: 2.2rem;
