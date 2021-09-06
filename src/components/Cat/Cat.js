@@ -4,284 +4,371 @@ const Cat = (props) => {
   return (
     <div className="svg-display app-ele">
       <svg
-        viewBox="190 100 300 400"
-        // viewBox="180 70 300 400"
+        viewBox={`0 0 ${props.width} ${props.height}`}
         width={props.width}
         height={props.height}>
 
-        {/* 時間調整用 */}
-        <rect>
-          <animate
-            id="o1"
-            begin="0;o1.end"
-            dur={String(Number(props.speed) * 2) + "s"}
-            attributeName="visibility"
-            from="hide" to="hide" />
-        </rect>
+        {/* 点座標 */}
+        {/* <g>
+          <g>
+            <circle cx={0} cy={0} r="5" fill="red" />
+            <circle cx={props.width / 2} cy={0} r="5" fill="red" />
+            <circle cx={props.width / 4} cy={0} r="5" fill="red" />
+            <circle cx={props.width / 4 * 3} cy={0} r="5" fill="red" />
+            <circle cx={props.width} cy={0} r="5" fill="red" />
+          </g>
+          <g>
+            <circle cx={0} cy={props.height / 4} r="5" fill="red" />
+            <circle cx={props.width / 2} cy={props.height / 4} r="5" fill="red" />
+            <circle cx={props.width / 4} cy={props.height / 4} r="5" fill="red" />
+            <circle cx={props.width / 4 * 3} cy={props.height / 4} r="5" fill="red" />
+            <circle cx={props.width} cy={props.height / 4} r="5" fill="red" />
+          </g>
+          <g>
+            <circle cx={0} cy={props.height / 2} r="5" fill="red" />
+            <circle cx={props.width / 2} cy={props.height / 2} r="5" fill="red" />
+            <circle cx={props.width / 4} cy={props.height / 2} r="5" fill="red" />
+            <circle cx={props.width / 4 * 3} cy={props.height / 2} r="5" fill="red" />
+            <circle cx={props.width} cy={props.height / 2} r="5" fill="red" />
+          </g>
+          <g>
+            <circle cx={0} cy={props.height / 4 * 3} r="5" fill="red" />
+            <circle cx={props.width / 2} cy={props.height / 4 * 3} r="5" fill="red" />
+            <circle cx={props.width / 4} cy={props.height / 4 * 3} r="5" fill="red" />
+            <circle cx={props.width / 4 * 3} cy={props.height / 4 * 3} r="5" fill="red" />
+            <circle cx={props.width} cy={props.height / 4 * 3} r="5" fill="red" />
+          </g>
+          <g>
+            <circle cx={0} cy={props.height} r="5" fill="red" />
+            <circle cx={props.width / 2} cy={props.height} r="5" fill="red" />
+            <circle cx={props.width / 4} cy={props.height} r="5" fill="red" />
+            <circle cx={props.width / 4 * 3} cy={props.height} r="5" fill="red" />
+            <circle cx={props.width} cy={props.height} r="5" fill="red" />
+          </g>
+        </g> */}
+
+
 
         {/* 体のライン */}
         <path
-          // d="M467 564.5
-          //    C461.49 389.26 458.04 342.24 456.66 323.43
-          //    C450.24 235.72 434.6 148.93 410 64.5
-          //    C410 64.5 410 64.5 410 64.5
-          //    C398.94 83.61 392.02 95.56 389.25 100.33
-          //    C381.67 113.43 367.68 121.5 352.54 121.5
-          //    C339.03 121.5 323.74 121.5 310.43 121.5
-          //    C294.63 121.5 279.96 113.3 271.69 99.83
-          //    C268.8 95.12 261.57 83.34 250 64.5
-          //    C250 64.5 250 64.5 250 64.5
-          //    C224.77 148.82 210.37 236.02 207.15 323.97
-          //    C206.46 342.71 204.75 389.55 202 564.5 z"
-          d="M467 564.5
-             C461.49 389.26 458.04 342.24 456.66 323.43
-             C450.24 235.72 434.6 148.93 410 64.5
-             C410 64.5 410 64.5 410 64.5
-             C398.94 83.61 392.02 95.56 389.25 100.33
-             C381.67 113.43 367.68 121.5 352.54 121.5
-             C339.03 121.5 323.74 121.5 310.43 121.5
-             C294.63 121.5 279.96 113.3 271.69 99.83
-             C268.8 95.12 261.57 83.34 250 64.5
-             C250 64.5 250 64.5 250 64.5
-             C224.77 148.82 210.37 236.02 207.15 323.97
-
-             C206.46 342.71 204.75 389.55 202 564.5 z"
+          d="M100 560
+             Q0 560, 60 300 
+             Q60 300, 90 70
+             L120 110
+             Q180 100, 240 110
+             L270 70
+             Q300 300, 300 300 
+             Q360 560, 250 560 
+             Z
+             "
           id="body-line"
           opacity="1"
-          fillOpacity="1"
+          fillOpacity="0"
           fill="#ffffff"
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-        ></path>
+        >
+          <animate
+            attributeName="d"
+            values="M100 560
+             Q0 560, 60 300 
+             Q60 300, 90 70
+             L120 110
+             Q180 100, 240 110
+             L270 70
+             Q300 300, 300 300 
+             Q360 560, 250 560 
+             Z;
+             M100 560
+             Q0 560, 40 310 
+             Q35 280, 90 80
+             L120 120
+             Q180 110, 240 120
+             L270 80
+             Q325 280, 320 310 
+             Q360 560, 250 560 
+             Z;
+             M100 560
+             Q0 560, 60 300 
+             Q60 300, 90 70
+             L120 110
+             Q180 100, 240 110
+             L270 70
+             Q300 300, 300 300 
+             Q360 560, 250 560 
+             Z;
+             "
+            dur={props.speed + "s"}
+            repeatCount="indefinite"
+          ></animate>
+        </path>
 
-        {/* 8line */}
-        <circle cx="268.8" cy="95.12" r="3" fill="red" />
-        <circle cx="261.57" cy="83.34" r="3" fill="red" />
-        <circle cx="250" cy="64.5" r="3" fill="red" />
+        {/* 足 */}
+        <g>
+        </g>
 
-        {/* 9line */}
-        <circle cx="250" cy="64.5" r="5" fill="red" />
-        <circle cx="250" cy="64.5" r="5" fill="red" />
-        <circle cx="250" cy="64.5" r="5" fill="red" />
+        {/* 耳 */}
+        <g strokeOpacity="0">
+          <path
+            d="M90 70 L110 110 L90 130"
+          >
+            <animate
+              attributeName="d"
+              values="
+              M90 70 L110 110 L90 130;
+              M90 80 L110 120 L80 140;
+              M90 70 L110 110 L90 130;
+              "
+              dur={props.speed + "s"}
+              repeatCount="indefinite"
+            ></animate>
+          </path>
 
-        {/* 10line */}
-        <circle cx="224.77" cy="148.82" r="5" fill="red" />
-        <circle cx="210.37" cy="236.02" r="5" fill="red" />
-        <circle cx="207.15" cy="323.97" r="5" fill="red" />
-
-        {/* 11line */}
-        <circle cx="206.46" cy="342.71" r="5" fill="red" />
-        <circle cx="204.75" cy="389.55" r="5" fill="red" />
-        <circle cx="202" cy="564.5" r="5" fill="red" />
-
-        {/* 1line */}
-        <circle cx="461.49" cy="389.26" r="5" />
-        <circle cx="458.04" cy="342.24" r="5" />
-        <circle cx="456.66" cy="323.43" r="5" />
-
-        {/* 2line */}
-        <circle cx="450.24" cy="253.72" r="5" fill="red" />
-        <circle cx="434.6" cy="148.93" r="5" fill="red" />
-        <circle cx="410" cy="64.5" r="5" fill="red" />
-
-        {/* 3line */}
-        <circle cx="410" cy="64.5" r="5" fill="red" />
-        <circle cx="410" cy="64.5" r="5" fill="red" />
-        <circle cx="410" cy="64.5" r="5" fill="red" />
-
-        {/* 4line */}
-        <circle cx="398.94" cy="83.61" r="3" fill="red" />
-        <circle cx="392.02" cy="95.56" r="3" fill="red" />
-        <circle cx="389.25" cy="100.33" r="3" fill="red" />
-
-        {/* 5line */}
-        <circle cx="381.67" cy="113.43" r="3" fill="blue" />
-        <circle cx="367.68" cy="121.5" r="3" fill="blue" />
-        <circle cx="352.54" cy="121.5" r="3" fill="blue" />
-
-        {/* 6line */}
-        <circle cx="339.03" cy="121.5" r="3" fill="red" />
-        <circle cx="323.74" cy="121.5" r="3" fill="red" />
-        <circle cx="310.43" cy="121.5" r="3" fill="red" />
-
-        {/* 7line */}
-        <circle cx="294.63" cy="121.5" r="3" fill="blue" />
-        <circle cx="279.96" cy="113.3" r="3" fill="blue" />
-        <circle cx="271.69" cy="99.83" r="3" fill="blue" />
+          <path
+            d="M250 110 L270 70 L270 130"
+          >
+            <animate
+              attributeName="d"
+              values="
+              M250 110 L270 70 L270 130;
+              M250 120 L270 80 L280 140;
+              M250 110 L270 70 L270 130;
+              "
+              dur={props.speed + "s"}
+              repeatCount="indefinite"
+            ></animate>
+          </path>
+        </g>
 
         {/* 右目 */}
-        <path
-          d="M300 175.83
-             C300 179.6 296.94 182.67 293.17 182.67
-             C289.4 182.67 286.33 179.6 286.33 175.83
-             C286.33 172.06 289.4 169 293.17 169
-             C296.94 169 300 172.06 300 175.83Z"
+        <circle
+          cx="145" cy="180" r="6"
           id="right-eye"
           opacity="1"
           fill="#000000"
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="0"
-        ></path>
+        >
+          <animate
+            attributeName="cy"
+            values="180;190;180"
+            dur={props.speed + "s"}
+            repeatCount="indefinite"
+          ></animate>
+        </circle>
 
         {/* 左目 */}
-        <path
-          d="M375 175.83
-             C375 179.6 371.94 182.67 368.17 182.67
-             C364.4 182.67 361.33 179.6 361.33 175.83
-             C361.33 172.06 364.4 169 368.17 169
-             C371.94 169 375 172.06 375 175.83Z"
-          id="left-eye"
+        <circle
+          cx="215" cy="180" r="6"
+          id="right-eye"
           opacity="1"
           fill="#000000"
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="0"
-        ></path>
-
+        >
+          <animate
+            attributeName="cy"
+            values="180;190;180"
+            dur={props.speed + "s"}
+            repeatCount="indefinite"
+          ></animate>
+        </circle>
 
         {/* 鼻 */}
-        <path
-          d="M340.54 194.48
-             C342.24 192.86 341.1 190 338.75 190
-             C333.95 190 324.42 190 319.21 190
-             C317.6 190 316.81 191.96 317.98 193.07
-             C320.38 195.36 323.47 198.29 325.65 200.37
-             C328.09 202.68 331.91 202.68 334.35 200.37
-             C336.53 198.29 338.43 196.48 340.54 194.48Z"
-          id="nose"
-          opacity="1"
-          fillOpacity="1"
-          fill="#ffffff"
-          stroke="#000000"
-          strokeWidth="2"
-          strokeOpacity="1"
-        ></path>
+        <g>
 
-        {/* 鼻の左側のライン */}
-        <path
-          d="M319.4 215
-             L326.58 212.05
-             L330 207.74
-             L330 201.57"
-          id="nose-left"
-          opacity="1"
-          fillOpacity="0"
-          stroke="#000000"
-          strokeWidth="2"
-          strokeOpacity="1"
-        ></path>
+          <path
+            d="M175 190
+          L185 190
+          L180 195
+          z"
+            id="nose"
+            opacity="1"
+            fillOpacity="1"
+            fill="#ffffff"
+            stroke="#000000"
+            strokeWidth="2"
+            strokeOpacity="1"
+          >
+            <animate
+              attributeName="d"
+              values="M175 190
+          L185 190
+          L180 195
+          z;
+          M175 200
+          L185 200
+          L180 205
+          z;
+          M175 190
+          L185 190
+          L180 195
+          z;
+          "
+              dur={props.speed + "s"}
+              repeatCount="indefinite"
+            ></animate>
+          </path>
 
-
-        {/* 鼻の右側のライン */}
-        <path
-          d="M339.69 215
-             L332.93 211.92
-             L330 207.5
-             L330 201.85"
-          id="nose-right"
-          opacity="1"
-          fillOpacity="0"
-          stroke="#000000"
-          strokeWidth="2"
-          strokeOpacity="1"
-        ></path>
-
-
-        {/* 左耳 */}
-        <path
-          d="M273 119.17
-             L240 121.5
-             L250.67 75
-             L273 119.17Z"
-          id="mimi-left"
-          opacity="1"
-          fillOpacity="1"
-          stroke="#000000"
-          strokeWidth="2"
-          strokeOpacity="1"
-        ></path>
-        
-        {/* 右耳 */}
-        <path
-          d="M390 117.89
-             L420 121.5
-             L408 75
-             L390 117.89Z"
-          id="mimi-right"
-          opacity="1"
-          fillOpacity="1"
-          stroke="#000000"
-          strokeWidth="2"
-          strokeOpacity="1"
-        ></path>
+          <path
+            d="M180 195 L180 205"
+            stroke="black"
+            strokeWidth="2"
+          >
+            <animate
+              attributeName="d"
+              values="M180 195 L180 205;
+                      M180 205 L180 215;
+                      M180 195 L180 205;
+                      "
+              dur={props.speed + "s"}
+              repeatCount="indefinite"
+            ></animate>
+          </path>
+        </g>
 
         {/* 左のひげ */}
-        <path
-          d="M185 172.25 L283 195.75"
-          id="hige-l1"
-          opacity="1"
-          fillOpacity="1"
-          stroke="#000000"
-          strokeWidth="2"
-          strokeOpacity="1"
-        ></path>
+        <g>
+          <path
+            d="M140 210 L40 190"
+            id="hige-l1"
+            opacity="1"
+            fillOpacity="1"
+            stroke="#000000"
+            strokeWidth="2"
+            strokeOpacity="1"
+          >
+            <animate
+              attributeName="d"
+              values="
+              M140 210 L40 190;
+              M140 220 L40 190;
+              M140 210 L40 190;
+                      "
+              dur={props.speed + "s"}
+              repeatCount="indefinite"
+            />
+          </path>
 
-        <path
-          d="M186 200 L282 203.75"
-          id="hige-l2"
-          opacity="1"
-          fillOpacity="1"
-          stroke="#000000"
-          strokeWidth="2"
-          strokeOpacity="1"
-        ></path>
+          <path
+            d="M140 220 L30 210"
+            id="hige-l2"
+            opacity="1"
+            fillOpacity="1"
+            stroke="#000000"
+            strokeWidth="2"
+            strokeOpacity="1"
+          >
+            <animate
+              attributeName="d"
+              values="
+              M140 220 L30 210;
+              M140 230 L30 210;
+              M140 220 L30 210;
+                      "
+              dur={props.speed + "s"}
+              repeatCount="indefinite"
+            />
 
-        <path
-          d="M187 226.25 L280 213.25"
-          id="hige-l3"
-          opacity="1"
-          fillOpacity="1"
-          stroke="#000000"
-          strokeWidth="2"
-          strokeOpacity="1"
-        ></path>
+          </path>
 
+          <path
+            d="M140 230 L40 230"
+            id="hige-l3"
+            opacity="1"
+            fillOpacity="1"
+            stroke="#000000"
+            strokeWidth="2"
+            strokeOpacity="1"
+          >
+            <animate
+              attributeName="d"
+              values="
+              M140 230 L40 230;
+              M140 240 L40 230;
+              M140 230 L40 230;
+                      "
+              dur={props.speed + "s"}
+              repeatCount="indefinite"
+            />
+          </path>
+        </g>
         {/* 右のひげ */}
         <path
-          d="M480 175.75 L379 193.75"
+          d="M220 210 L310 190"
           id="hige-r1"
           opacity="1"
           fillOpacity="1"
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-        ></path>
+        >
+          <animate
+            attributeName="d"
+            values="
+              M220 210 L310 190;
+              M220 220 L310 190;
+              M220 210 L310 190;
+                      "
+            dur={props.speed + "s"}
+            repeatCount="indefinite"
+          />
+
+        </path>
 
         <path
-          d="M480 202.25 L380 203.25"
+          d="M220 220 L320 210"
           id="hige-r2"
           opacity="1"
           fillOpacity="1"
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-        ></path>
+        >
+          <animate
+            attributeName="d"
+            values="
+              M220 220 L320 210;
+              M220 230 L320 210;
+              M220 220 L320 210;
+                      "
+            dur={props.speed + "s"}
+            repeatCount="indefinite"
+          />
+
+        </path>
 
         <path
-          d="M477 224.75 L380 212.25"
+          d="M220 230 L310 230"
           id="hige-r3"
           opacity="1"
           fillOpacity="1"
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-        ></path>
+        >
+          <animate
+            attributeName="d"
+            values="
+              M220 230 L310 230;
+              M220 240 L310 230;
+              M220 230 L310 230;
+                      "
+            dur={props.speed + "s"}
+            repeatCount="indefinite"
+          />
+
+        </path>
+
 
 
         {/* あごのよくわからない部分 */}
         <path
+          d="M160 300
+               Q180 310,200 300"
           id="ago"
           opacity="1"
           fillOpacity="0"
@@ -290,39 +377,18 @@ const Cat = (props) => {
           strokeOpacity="1"
         >
           <animate
-            begin="o1.begin"
             attributeName="d"
-            from="M370 280
-                  L331.25 286.25
-                  L295 280"
-            to="M370 300
-                  L331.25 306.25
-                  L295 300"
-            dur={props.speed + "s"}
-          // repeatCount="indefinite"
+            values="
+              M160 300
+              Q180 310,200 300;
+              M130 300
+              Q180 310,230 300;
+              M160 300
+              Q180 310,200 300;
+              "
+            dur={props.speed}
+            repeatCount="indefinite"
           />
-        </path>
-
-        <path
-          opacity="1"
-          fillOpacity="0"
-          stroke="#000000"
-          strokeWidth="2"
-          strokeOpacity="1"
-        >
-          <animate
-            begin={"o1.begin+" + props.speed + "s"}
-            attributeName="d"
-            from="M370 300
-                  L331.25 306.25
-                  L295 300"
-            to="M370 280
-                L331.25 286.25
-                L295 280"
-            dur={props.speed + "s"}
-          // repeatCount="indefinite"
-          />
-          
         </path>
       </svg>
     </div>

@@ -9,7 +9,7 @@ import BpmRange from './BpmRange/BpmRange';
 
 const posX = 0;
 const posY = 0;
-const width = 300;
+const width = 360;
 const height = 600;
 const bpmDefault = 120;
 const bpmMin = 40;
@@ -39,7 +39,7 @@ function App() {
 
   const bpmToSecondsStr = (bpm, bar = 4) => {
     let b = Math.floor(bar / 4); // 拍数を計算する
-    return (60 / bpm / b + 0.05).toFixed(2);
+    return (60 / bpm / b).toFixed(2);
   }
 
 

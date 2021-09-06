@@ -1,8 +1,7 @@
 .svg-display {
   width: 100%;
+
+  background-color: rgb(255, 255, 255);
 }
 
-#backCircle {
-  position: absolute;
-  z-index: -100;
-}
+
