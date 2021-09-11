@@ -5,6 +5,8 @@ import BpmForm from './BpmForm/BpmForm';
 import BpmRange from './BpmRange/BpmRange';
 import DarkModeBtn from './DarkModeBtn/DarkModeBtn';
 import StartStop from './StartStop/StartStop'
+import BeatBtn from './BeatBtn/BeatBtn';
+import {useKey, useKeyPressEvent } from 'react-use';
 // import SwitchMode from './SwitchMode/SwitchMode';
 // import './ClickField/ClickField.css'
 // import ClickField from './ClickField/ClickField';
@@ -22,6 +24,7 @@ function App() {
   const [bpm, setBpm] = useState({"now": 0.01, "pre": bpmDefault});
   const [mode, setMode] = useState('light');
   const [control, setControl] = useState('stop');
+  const [beat, setBeat] = useState('4');
 
   const changeBpmForm = () => {
     const bpmForm = document.getElementById("bpm-form");
@@ -55,21 +58,17 @@ function App() {
     bpmForm.value = String(v);
   }
 
-  const bpmToSecondsStr = (bpm, bar = 4) => {
-    // if(bpm === 1) {
-    //   return (0).toFixed(2);
-    // }
-    let b = Math.floor(bar / 4); // 拍数を計算する ? / 4
-    return (60 / bpm / b).toFixed(2);
+  const bpmToSecondsStr = (bpm, beat = 4, note = 4) => {
+    let b = beat / note; // 拍数を計算する ? / 4
+    return ((60 / bpm) / b).toFixed(2);
   }
 
-  const SwitchPlay = () => {
+  const switchPlay = () => {
     const playBtn = document.getElementById('startstop-btn');
-    const playBtnImg = document.querySelector('#startstop-btn img');
-
     const bpmForm = document.getElementById("bpm-form");
     let vf = bpmForm.value;
     let nowbpm = bpm.now;
+
     if (control === 'play') {
       playBtn.innerHTML = '<img src="./play.png" alt="play" />';
       setControl('stop');
@@ -138,25 +137,83 @@ function App() {
     }
   }
 
+  const changeBeat = e => setBeat(e.target.value);
+  // KeyPress Event
+  // Block default Key Event
+  window.addEventListener(
+    'keydown',
+    e => {
+      let code = e.code;
+      switch(code) {
+        case 'Space':
+        case 'KeyV':
+        case 'KeyB':
+        case 'KeyN':
+        case 'KeyM':
+          e.preventDefault();
+          break;
+        default:
+      }
+    },
+    true
+  )
+  useKey('v', () => {
+    const bpmForm = document.getElementById("bpm-form");
+    const bpmRange = document.getElementById("bpm-range");
+    let prebpm = bpm["now"];
+    if (bpmForm.value > bpmMin && bpmForm.value !== null) {
+      bpmForm.value = String(Number(bpmForm.value) - 1);
+      bpmRange.value = String(Number(bpmRange.value) - 1);
+      setBpm(
+        {
+          "pre": prebpm,
+          "now": Number(bpmForm.value)
+        }
+      );
+    }
+  });
+  useKey('m', () => {
+    const bpmForm = document.getElementById("bpm-form");
+    const bpmRange = document.getElementById("bpm-range");
+    let prebpm = bpm["now"];
+    if (bpmForm.value < bpmMax) {
+      bpmForm.value = String(Number(bpmForm.value) + 1);
+      bpmRange.value = String(Number(bpmRange.value) + 1);
+      setBpm(
+        {
+          "pre": prebpm,
+          "now": Number(bpmForm.value)
+        }
+      );
+    }
+
+  });
+  useKeyPressEvent('n', switchDarkMode);
+  useKeyPressEvent(' ', switchPlay);
 
   return (
     <div className="App">
       <Cat
         width={width} height={height}
         posX={posX} posY={posY}
-        speed={bpmToSecondsStr(bpm.now)}
+        speed={bpmToSecondsStr(bpm.now, Number(beat))}
       />
       {/* <ClickField id="click-field" /> */}
       <BpmForm
         min={bpmMin} max={bpmMax} defaultValue={bpmDefault}
         onChange={changeBpmForm}
       />
+      <BeatBtn
+        value={beat}
+        onChange={changeBeat}
+      />
+
       <BpmRange
         min={bpmMin} max={bpmMax} defaultValue={bpmDefault}
         onChange={changeBpmRange}
       />
       <div className="app-ele control-1">
-        <StartStop onClick={SwitchPlay} type={control} />
+        <StartStop onClick={switchPlay} type={control} />
         <DarkModeBtn onClick={switchDarkMode} mode={mode} />
       </div>
     </div>

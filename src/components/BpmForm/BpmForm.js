@@ -3,7 +3,7 @@ import './BpmForm.css'
 function BpmForm(props) {
   return (
       <div className="app-ele">
-        <label for="bpmtext">BPM</label>
+        <p>BPM</p>
         <input
           id="bpm-form"
           type="text"

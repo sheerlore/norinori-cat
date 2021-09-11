@@ -1,0 +1,28 @@
+#radioArea input {
+  display: none;
+}
+
+#radioArea label {
+  /* color: #121121; */
+  border: 1px solid #afafaf;
+  text-align: center;
+  display: inline-block;
+  padding: 5px 0;
+  width: 90px;
+}
+
+#radioArea input[type="radio"]:checked + label {
+  background-color: #aeaeae;
+}
+
+.radio-first {
+  border-radius: 5px 0 0 5px;
+}
+
+.radio-last {
+  border-radius: 0 5px 5px 0;
+}
+
+#radioArea p {
+  margin-bottom: 5px;
+}

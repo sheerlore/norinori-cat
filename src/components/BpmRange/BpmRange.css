@@ -18,15 +18,15 @@
 #bpm-range::after {
   content: '218';
   position: relative;
-  right: -10px;
-  top: -20px;
+  right: -15px;
+  top: 5px;
 }
 
 #bpm-range::before {
   content: '40';
   position: relative;
   left: -10px;
-  top: -20px;
+  top: 5px;
 }
 
 #bpm-range:hover {

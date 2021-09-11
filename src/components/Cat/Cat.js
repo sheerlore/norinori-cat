@@ -2,7 +2,7 @@ import './Cat.css'
 
 const Cat = (props) => {
   return (
-    <div className="svg-display app-ele">
+    <div className="app-ele svg-display">
       <svg
         id="cat-root"
         viewBox={`0 40 ${props.width} ${props.height}`}
