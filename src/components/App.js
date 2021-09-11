@@ -1,12 +1,15 @@
 import './App.css';
 import { useState } from 'react';
+import { useKey, useKeyPressEvent } from 'react-use';
 import Cat from '../components/Cat/Cat'
 import BpmForm from './BpmForm/BpmForm';
 import BpmRange from './BpmRange/BpmRange';
 import DarkModeBtn from './DarkModeBtn/DarkModeBtn';
 import StartStop from './StartStop/StartStop'
 import BeatBtn from './BeatBtn/BeatBtn';
-import {useKey, useKeyPressEvent } from 'react-use';
+import SoundBtn from './SoundBtn/SoundBtn';
+import * as Tone from 'tone';
+import { Mono } from 'tone';
 // import SwitchMode from './SwitchMode/SwitchMode';
 // import './ClickField/ClickField.css'
 // import ClickField from './ClickField/ClickField';
@@ -15,16 +18,47 @@ const posX = 0;
 const posY = 0;
 const width = 360;
 const height = 550;
-const bpmDefault = 120;
+const bpmDefault = 100.0;
 const bpmMin = 40;
 const bpmMax = 218;
 
+// エンベロープ（キック）
+let optsMembrane = {
+  pitchDecay: 0.001,
+  envelope: {
+    attack: 0.001 ,
+    decay: 0.1,
+    sustain: 0 ,
+    release: 0 
+  },
+  volume: 35
+}
+
+// エンベロープ（ハイハット）
+let optsNoiseHihat = {
+  type: "brown",
+  envelope: {
+    attack: 0.001 ,
+    decay: 0.03 ,
+    sustain: 0
+  },
+}
+// const synth = new Tone.Synth().toDestination();
+// const snr = new Tone.NoiseSynth().toDestination();
+const bass = new Tone.MembraneSynth(optsMembrane).toDestination();
+const cym = new Tone.NoiseSynth(optsNoiseHihat).toDestination();
+
 
 function App() {
-  const [bpm, setBpm] = useState({"now": 0.01, "pre": bpmDefault});
+  const [bpm, setBpm] = useState({ "now": 0.01, "pre": bpmDefault });
   const [mode, setMode] = useState('light');
   const [control, setControl] = useState('stop');
+  const [isMute, setIsMute] = useState(true);
   const [beat, setBeat] = useState('4');
+  const [isFirst, setIsFirst] = useState(true);
+  // const [count, setCount] = useState(0);
+  let count = 0;
+
 
   const changeBpmForm = () => {
     const bpmForm = document.getElementById("bpm-form");
@@ -40,6 +74,9 @@ function App() {
       );
     }
     bpmRange.value = String(v);
+    if (control === 'stop') {
+      switchPlay();
+    }
   }
 
   const changeBpmRange = () => {
@@ -56,6 +93,9 @@ function App() {
       );
     }
     bpmForm.value = String(v);
+    if (control === 'stop') {
+      switchPlay();
+    }
   }
 
   const bpmToSecondsStr = (bpm, beat = 4, note = 4) => {
@@ -65,21 +105,26 @@ function App() {
 
   const switchPlay = () => {
     const playBtn = document.getElementById('startstop-btn');
+    const soundBtn = document.getElementById('sound-btn');
     const bpmForm = document.getElementById("bpm-form");
     let vf = bpmForm.value;
     let nowbpm = bpm.now;
 
     if (control === 'play') {
-      playBtn.innerHTML = '<img src="./play.png" alt="play" />';
+      playBtn.innerHTML = '<img src="./image/play.png" alt="play" />';
       setControl('stop');
       setBpm(
         {
           "pre": nowbpm,
-          "now": 0.01 
+          "now": 0.01
         }
       );
+
+      soundBtn.innerHTML = '<img src="./image/soundx.png" alt="fs" />';
+      Tone.Transport.stop();
+      setIsMute(true);
     } else if (control === 'stop') {
-      playBtn.innerHTML = '<img src="./stop.png" alt="stop" />';
+      playBtn.innerHTML = '<img src="./image/stop.png" alt="stop" />';
       setControl('play');
       setBpm(
         {
@@ -94,6 +139,7 @@ function App() {
     const body = document.body;
     const darkBtn = document.getElementById('darkmode-btn');
     const playBtn = document.getElementById('startstop-btn');
+    const soundBtn = document.getElementById('sound-btn');
     const bpmRange = document.getElementById("bpm-range");
     const catBodyLine = document.getElementById('body-line');
     const catEyeR = document.getElementById('right-eye');
@@ -102,9 +148,11 @@ function App() {
 
     if (mode === 'light') {
       // ボタン
-      darkBtn.textContent = '☽';
-      darkBtn.style.backgroundColor = "#283033";
-      playBtn.style.backgroundColor = "#afafaf"
+      darkBtn.innerHTML = '<img src="./image/Moon.png" alt="moon" />';
+      darkBtn.style.backgroundColor = "#fcdddb";
+      playBtn.style.backgroundColor = "#fff199";
+      soundBtn.style.backgroundColor = "#c0e4c9";
+
       bpmRange.style.color = '#fefefe';
 
       // 全体
@@ -120,9 +168,10 @@ function App() {
       setMode('dark');
     } else if (mode === 'dark') {
       // ボタン
-      darkBtn.textContent = '☀';
-      darkBtn.style.backgroundColor = "#95e1ff";
-      playBtn.style.backgroundColor = "#fefefe"
+      darkBtn.innerHTML = '<img src="./image/sun.png" alt="moon" />';
+      darkBtn.style.backgroundColor = "#ffb2b2";
+      playBtn.style.backgroundColor = "#ffeb58";
+      soundBtn.style.backgroundColor = "#8ec29b";
       bpmRange.style.color = '#000000';
       // 全体
       body.style.backgroundColor = "#fefefe";
@@ -137,14 +186,61 @@ function App() {
     }
   }
 
+  const switchSound = () => {
+    const soundBtn = document.getElementById('sound-btn');
+
+    if (isFirst) {
+      console.log('first');
+      setIsFirst(false);
+      const loop = new Tone.Loop(time => {
+        // bass.triggerAttackRelease("C1", '1n');
+        if (count === 1 || count === 3) {
+          cym.triggerAttackRelease('16n');
+        } else {
+          bass.triggerAttackRelease('8n');
+        }
+
+        if (count === 4) {
+          // setCount(1);
+          count = 1;
+        } else {
+          // setCount(count + 1);
+          count++;
+        }
+      }, "4n").start(0);
+    }
+    if (isMute) {
+      soundBtn.innerHTML = '<img src="./image/soundo.png" alt="ts" />';
+      setIsMute(false); // Muteを解除する
+      if (bpm.now > bpmMin) {
+        // 初期化時対応
+        Tone.Transport.bpm.value = bpm.now;
+      } else {
+        Tone.Transport.bpm.value = bpmDefault;
+      }
+      Tone.Transport.start();
+    } else {
+      soundBtn.innerHTML = '<img src="./image/soundx.png" alt="fs" />';
+      setIsMute(true); // Muteにする
+      Tone.Transport.stop();
+    }
+  }
+
   const changeBeat = e => setBeat(e.target.value);
+  if (control !== 'play') {
+    Tone.Transport.bpm.value = bpm.pre;
+  } else {
+    Tone.Transport.bpm.value = bpm.now;
+  }
+
+
   // KeyPress Event
   // Block default Key Event
   window.addEventListener(
     'keydown',
     e => {
       let code = e.code;
-      switch(code) {
+      switch (code) {
         case 'Space':
         case 'KeyV':
         case 'KeyB':
@@ -171,6 +267,9 @@ function App() {
         }
       );
     }
+    if (control === 'stop') {
+      switchPlay();
+    }
   });
   useKey('m', () => {
     const bpmForm = document.getElementById("bpm-form");
@@ -186,9 +285,12 @@ function App() {
         }
       );
     }
-
+    if (control === 'stop') {
+      switchPlay();
+    }
   });
   useKeyPressEvent('n', switchDarkMode);
+  useKeyPressEvent('b', switchSound);
   useKeyPressEvent(' ', switchPlay);
 
   return (
@@ -213,6 +315,7 @@ function App() {
         onChange={changeBpmRange}
       />
       <div className="app-ele control-1">
+        <SoundBtn onClick={switchSound} />
         <StartStop onClick={switchPlay} type={control} />
         <DarkModeBtn onClick={switchDarkMode} mode={mode} />
       </div>

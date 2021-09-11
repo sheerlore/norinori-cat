@@ -4,7 +4,7 @@ import './BeatBtn.css'
 function BeatBtn(props) {
   return (
     <div id="radioArea" className="app-ele">
-      <p>BEAT</p>
+      <p>BEAT(Cat Only)</p>
       <input
         id="r1"
         type="radio"

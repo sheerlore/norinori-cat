@@ -1,8 +1,7 @@
 #darkmode-btn {
   width: 60px;
   height: 60px;
-  background-color: #95e1ff;
-  color: #fffc2e;
+  background-color: #ffb2b2;
 
   display: inline-block;
   text-decoration: none;
@@ -16,4 +15,10 @@
   box-sizing: border-box;
 
   user-select: none;
+}
+
+#darkmode-btn img {
+  display: block;
+  position: relative;
+  margin: 0 auto;
 }

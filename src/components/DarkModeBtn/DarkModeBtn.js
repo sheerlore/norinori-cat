@@ -6,7 +6,9 @@ function DarkModeBtn(props) {
       <button
         id="darkmode-btn"
         onClick={props.onClick}
-      >☀</button>
+      >
+        <img src="./image/sun.png" alt="sun" />
+      </button>
     </div>
   );
 }

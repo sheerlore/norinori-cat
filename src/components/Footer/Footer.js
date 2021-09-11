@@ -3,7 +3,7 @@ import './Footer.css'
 function Footer(props) {
   return (
     <footer>
-      <p>©Yuma Matsuzaki, uai </p>
+      <p>© Yuma Matsuzaki</p>
       <a href="https://github.com/Sheerlore">My github →</a>
     </footer>
   );

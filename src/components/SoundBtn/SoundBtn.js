@@ -1,8 +1,13 @@
 import './SoundBtn.css'
 
-function SoundBtn() {
+function SoundBtn(props) {
+
   return (
-    <div></div>
+    <div className="control-1_child">
+      <button id="sound-btn" onClick={props.onClick} >
+        <img src="./image/soundx.png" alt="ts" />
+      </button>
+    </div>
   );
 }
 
