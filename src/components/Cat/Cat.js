@@ -69,6 +69,7 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
+          onClick={props.onClick}
         >
           <animate
             attributeName="d"

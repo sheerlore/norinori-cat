@@ -9,8 +9,6 @@ import StartStop from './StartStop/StartStop'
 import BeatBtn from './BeatBtn/BeatBtn';
 import SoundBtn from './SoundBtn/SoundBtn';
 import * as Tone from 'tone';
-import { Mono } from 'tone';
-// import SwitchMode from './SwitchMode/SwitchMode';
 // import './ClickField/ClickField.css'
 // import ClickField from './ClickField/ClickField';
 
@@ -47,6 +45,8 @@ let optsNoiseHihat = {
 // const snr = new Tone.NoiseSynth().toDestination();
 const bass = new Tone.MembraneSynth(optsMembrane).toDestination();
 const cym = new Tone.NoiseSynth(optsNoiseHihat).toDestination();
+const meow1 = new Audio('./sound/cat-meowing-1.mp3');
+const meow2 = new Audio('./sound/cat-meowing-2.mp3');
 
 
 function App() {
@@ -233,6 +233,15 @@ function App() {
     Tone.Transport.bpm.value = bpm.now;
   }
 
+  const playMeow = () => {
+    if (mode === 'light') {
+      meow2.play();
+    } else {
+      meow1.play();
+    }
+    
+  }
+
 
   // KeyPress Event
   // Block default Key Event
@@ -299,6 +308,7 @@ function App() {
         width={width} height={height}
         posX={posX} posY={posY}
         speed={bpmToSecondsStr(bpm.now, Number(beat))}
+        onClick={playMeow}
       />
       {/* <ClickField id="click-field" /> */}
       <BpmForm

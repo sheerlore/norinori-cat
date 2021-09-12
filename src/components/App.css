@@ -12,6 +12,10 @@
   margin-bottom: 24px;
 }
 
+.app-ele p {
+  user-select: none;
+}
+
 
 .control-1 {
   width: 100%;
