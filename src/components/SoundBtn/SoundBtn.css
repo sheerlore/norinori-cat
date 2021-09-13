@@ -1,27 +1,11 @@
 #sound-btn {
   width: 60px;
   height: 60px;
+  background-color: #8ec29b;
 
   display: inline-block;
   text-decoration: none;
   line-height: 60px;
-  font-size: 28px;
-
-  /* border: 1px solid #aeaeae; */
-  border: none;
-  outline: none;
   border-radius: 50px;
-  overflow: hidden;
-  box-sizing: border-box;
-  user-select: none;
 
-  background-color: #c0e4c9;
-  background-color: #8ec29b;
-}
-
-
-#sound-btn img {
-  display: block;
-  position: relative;
-  margin: 0 auto;
 }

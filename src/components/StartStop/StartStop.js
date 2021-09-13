@@ -8,7 +8,7 @@ function StartStop(props) {
         id="startstop-btn"
         onClick={props.onClick}
       >
-        <img src="./image/play.png" alt="play" />
+        <img src="/norinori-cat/image/play.png" alt="play" />
       </button>
     </div>
   );

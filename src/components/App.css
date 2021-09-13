@@ -9,11 +9,12 @@
 
 .app-ele {
   margin: 0 auto;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .app-ele p {
   user-select: none;
+  margin-bottom: 0 !important;
 }
 
 
@@ -24,5 +25,24 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  text-align: center;
   
+}
+
+.control-1 button {
+  width: auto;
+  padding: 0;
+  margin: 0;
+  background-color: none;
+  border: 0;
+  font-size: 0;
+  line-height: 0;
+  overflow: visible;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.control-1_child img {
+  width: 30px;
+  height: 30px;
 }

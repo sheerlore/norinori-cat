@@ -6,19 +6,6 @@
   display: inline-block;
   text-decoration: none;
   line-height: 60px;
-  font-size: 28px;
 
-  border: none;
   border-radius: 50%;
-  overflow: hidden;
-  outline: none;
-  box-sizing: border-box;
-
-  user-select: none;
-}
-
-#darkmode-btn img {
-  display: block;
-  position: relative;
-  margin: 0 auto;
 }

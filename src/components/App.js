@@ -9,8 +9,6 @@ import StartStop from './StartStop/StartStop'
 import BeatBtn from './BeatBtn/BeatBtn';
 import SoundBtn from './SoundBtn/SoundBtn';
 import * as Tone from 'tone';
-// import './ClickField/ClickField.css'
-// import ClickField from './ClickField/ClickField';
 
 const posX = 0;
 const posY = 0;
@@ -24,30 +22,17 @@ const bpmMax = 218;
 let optsMembrane = {
   pitchDecay: 0.001,
   envelope: {
-    attack: 0.001,
-    decay: 0.1,
+    attack: 0.005,
+    decay: 0.4,
     sustain: 0,
-    release: 0
+    release: 0.1
   },
-  volume: 35
+  volume: 15 
 }
 
-// エンベロープ（ハイハット）
-let optsNoiseHihat = {
-  type: "brown",
-  envelope: {
-    attack: 0.001,
-    decay: 0.03,
-    sustain: 0
-  },
-}
-// const synth = new Tone.Synth().toDestination();
-// const snr = new Tone.NoiseSynth().toDestination();
 const bass = new Tone.MembraneSynth(optsMembrane).toDestination();
-const cym = new Tone.NoiseSynth(optsNoiseHihat).toDestination();
-const meow1 = new Audio('./sound/cat-meowing-1.mp3');
-const meow2 = new Audio('./sound/cat-meowing-2.mp3');
-
+const meow1 = new Audio("/norinori-cat/sound/cat-meowing-1.mp3");
+const meow2 = new Audio("/norinori-cat/sound/cat-meowing-2.mp3");
 
 function App() {
   const [bpm, setBpm] = useState({ "now": 0.01, "pre": bpmDefault });
@@ -56,8 +41,6 @@ function App() {
   const [isMute, setIsMute] = useState(true);
   const [beat, setBeat] = useState('4');
   const [isFirst, setIsFirst] = useState(true);
-  // const [count, setCount] = useState(0);
-  let count = 0;
 
 
   const changeBpmForm = () => {
@@ -111,7 +94,7 @@ function App() {
     let nowbpm = bpm.now;
 
     if (control === 'play') {
-      playBtn.innerHTML = '<img src="./image/play.png" alt="play" />';
+      playBtn.innerHTML = '<img src="/norinori-cat/image/play.png" alt="play" />';
       setControl('stop');
       setBpm(
         {
@@ -120,11 +103,11 @@ function App() {
         }
       );
 
-      soundBtn.innerHTML = '<img src="./image/soundx.png" alt="fs" />';
+      soundBtn.innerHTML = '<img src="/norinori-cat/image/soundx.png" alt="fs" />';
       Tone.Transport.stop();
       setIsMute(true);
     } else if (control === 'stop') {
-      playBtn.innerHTML = '<img src="./image/stop.png" alt="stop" />';
+      playBtn.innerHTML = '<img src="/norinori-cat/image/stop.png" alt="stop" />';
       setControl('play');
       setBpm(
         {
@@ -149,7 +132,7 @@ function App() {
 
     if (mode === 'light') {
       // ボタン
-      darkBtn.innerHTML = '<img src="./image/moon.png" alt="moon" />';
+      darkBtn.innerHTML = '<img src="/norinori-cat/image/moon.png" alt="moon" />';
       darkBtn.style.backgroundColor = "#fcdddb";
       playBtn.style.backgroundColor = "#fff199";
       soundBtn.style.backgroundColor = "#c0e4c9";
@@ -172,7 +155,7 @@ function App() {
       setMode('dark');
     } else if (mode === 'dark') {
       // ボタン
-      darkBtn.innerHTML = '<img src="./image/sun.png" alt="sun" />';
+      darkBtn.innerHTML = '<img src="/norinori-cat/image/sun.png" alt="sun" />';
       darkBtn.style.backgroundColor = "#ffb2b2";
       playBtn.style.backgroundColor = "#ffeb58";
       soundBtn.style.backgroundColor = "#8ec29b";
@@ -193,32 +176,29 @@ function App() {
     }
   }
 
+  const notes = [
+    "C3", "C4", "C3", "C4"
+  ];
+  let index = 0;
+
   const switchSound = () => {
     const soundBtn = document.getElementById('sound-btn');
+    const initSound = new Audio("/norinori-cat/sound/sit.mp3");
 
     if (isFirst) {
       console.log('first');
+      Tone.Transport.scheduleRepeat(time => {
+        let note = notes[index % notes.length];
+        bass.triggerAttackRelease(note, "4n", time);
+        index++;
+      }, "8n");
+      initSound.play();
       setIsFirst(false);
-      const loop = new Tone.Loop(time => {
-        // bass.triggerAttackRelease("C1", '1n');
-        if (count === 1 || count === 3) {
-          cym.triggerAttackRelease('16n');
-        } else {
-          bass.triggerAttackRelease('8n');
-        }
-
-        if (count === 4) {
-          // setCount(1);
-          count = 1;
-        } else {
-          // setCount(count + 1);
-          count++;
-        }
-      }, "4n").start(0);
       Tone.Transport.start();
     }
+
     if (isMute) {
-      soundBtn.innerHTML = '<img src="./image/soundo.png" alt="ts" />';
+      soundBtn.innerHTML = '<img src="/norinori-cat/image/soundo.png" alt="ts" />';
       setIsMute(false); // Muteを解除する
       if (bpm.now > bpmMin) {
         // 初期化時対応
@@ -228,9 +208,9 @@ function App() {
       }
       Tone.Transport.start();
     } else {
-      soundBtn.innerHTML = '<img src="./image/soundx.png" alt="fs" />';
-      setIsMute(true); // Muteにする
+      soundBtn.innerHTML = '<img src="/norinori-cat/image/soundx.png" alt="fs" />';
       Tone.Transport.stop();
+      setIsMute(true); // Muteにする
     }
   }
 
@@ -242,6 +222,9 @@ function App() {
   }
 
   const playMeow = () => {
+    console.log("Meow");
+    meow1.currentTime = 0;
+    meow2.currentTime = 0;
     if (!isMute) {
       if (mode === 'light') {
         meow2.play();
@@ -250,6 +233,7 @@ function App() {
       }
     }
   }
+
 
 
   // KeyPress Event

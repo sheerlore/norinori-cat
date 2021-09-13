@@ -7,48 +7,10 @@ const Cat = (props) => {
         id="cat-root"
         viewBox={`0 40 ${props.width} ${props.height}`}
         width={props.width}
-        height={props.height}>
-
-        {/* 点座標 */}
-        {/* <g>
-          <g>
-            <circle cx={0} cy={0} r="5" fill="red" />
-            <circle cx={props.width / 2} cy={0} r="5" fill="red" />
-            <circle cx={props.width / 4} cy={0} r="5" fill="red" />
-            <circle cx={props.width / 4 * 3} cy={0} r="5" fill="red" />
-            <circle cx={props.width} cy={0} r="5" fill="red" />
-          </g>
-          <g>
-            <circle cx={0} cy={props.height / 4} r="5" fill="red" />
-            <circle cx={props.width / 2} cy={props.height / 4} r="5" fill="red" />
-            <circle cx={props.width / 4} cy={props.height / 4} r="5" fill="red" />
-            <circle cx={props.width / 4 * 3} cy={props.height / 4} r="5" fill="red" />
-            <circle cx={props.width} cy={props.height / 4} r="5" fill="red" />
-          </g>
-          <g>
-            <circle cx={0} cy={props.height / 2} r="5" fill="red" />
-            <circle cx={props.width / 2} cy={props.height / 2} r="5" fill="red" />
-            <circle cx={props.width / 4} cy={props.height / 2} r="5" fill="red" />
-            <circle cx={props.width / 4 * 3} cy={props.height / 2} r="5" fill="red" />
-            <circle cx={props.width} cy={props.height / 2} r="5" fill="red" />
-          </g>
-          <g>
-            <circle cx={0} cy={props.height / 4 * 3} r="5" fill="red" />
-            <circle cx={props.width / 2} cy={props.height / 4 * 3} r="5" fill="red" />
-            <circle cx={props.width / 4} cy={props.height / 4 * 3} r="5" fill="red" />
-            <circle cx={props.width / 4 * 3} cy={props.height / 4 * 3} r="5" fill="red" />
-            <circle cx={props.width} cy={props.height / 4 * 3} r="5" fill="red" />
-          </g>
-          <g>
-            <circle cx={0} cy={props.height} r="5" fill="red" />
-            <circle cx={props.width / 2} cy={props.height} r="5" fill="red" />
-            <circle cx={props.width / 4} cy={props.height} r="5" fill="red" />
-            <circle cx={props.width / 4 * 3} cy={props.height} r="5" fill="red" />
-            <circle cx={props.width} cy={props.height} r="5" fill="red" />
-          </g>
-        </g> */}
-
-
+        height={props.height}
+        xmlns="http://www.w3.org/2000/svg"
+        onClick={props.onClick}
+      >
 
         {/* 体のライン */}
         <path
@@ -69,7 +31,6 @@ const Cat = (props) => {
           stroke="#000000"
           strokeWidth="2"
           strokeOpacity="1"
-          onClick={props.onClick}
         >
           <animate
             attributeName="d"
@@ -99,49 +60,45 @@ const Cat = (props) => {
              L270 70
              Q300 300, 300 300 
              Q360 560, 250 560 
-             Z;
+             Z
              "
             dur={props.speed + "s"}
             repeatCount="indefinite"
           ></animate>
         </path>
 
-        {/* 足 */}
-        <g>
-        </g>
-
         {/* 耳 */}
-        <g strokeOpacity="0">
-          <path
-            d="M90 70 L110 110 L90 130"
-          >
-            <animate
-              attributeName="d"
-              values="
+        <path
+          d="M90 70 L110 110 L90 130"
+          strokeOpacity="0"
+        >
+          <animate
+            attributeName="d"
+            values="
               M90 70 L110 110 L90 130;
               M90 80 L110 120 L80 140;
-              M90 70 L110 110 L90 130;
+              M90 70 L110 110 L90 130
               "
-              dur={props.speed + "s"}
-              repeatCount="indefinite"
-            ></animate>
-          </path>
+            dur={props.speed + "s"}
+            repeatCount="indefinite"
+          ></animate>
+        </path>
 
-          <path
-            d="M250 110 L270 70 L270 130"
-          >
-            <animate
-              attributeName="d"
-              values="
+        <path
+          d="M250 110 L270 70 L270 130"
+          strokeOpacity="0"
+        >
+          <animate
+            attributeName="d"
+            values="
               M250 110 L270 70 L270 130;
               M250 120 L270 80 L280 140;
-              M250 110 L270 70 L270 130;
+              M250 110 L270 70 L270 130
               "
-              dur={props.speed + "s"}
-              repeatCount="indefinite"
-            ></animate>
-          </path>
-        </g>
+            dur={props.speed + "s"}
+            repeatCount="indefinite"
+          ></animate>
+        </path>
 
         {/* 右目 */}
         <circle
@@ -180,24 +137,22 @@ const Cat = (props) => {
         </circle>
 
         {/* 鼻 */}
-        <g>
-
-          <path
-            d="M175 190
+        <path
+          d="M175 190
           L185 190
           L180 195
           z"
-            id="nose"
-            opacity="1"
-            fillOpacity="1"
-            fill="rgb(255, 120, 180)"
-            stroke="#000000"
-            strokeWidth="2"
-            strokeOpacity="1"
-          >
-            <animate
-              attributeName="d"
-              values="M175 190
+          id="nose"
+          opacity="1"
+          fillOpacity="1"
+          fill="rgb(255, 120, 180)"
+          stroke="#000000"
+          strokeWidth="2"
+          strokeOpacity="1"
+        >
+          <animate
+            attributeName="d"
+            values="M175 190
           L185 190
           L180 195
           z;
@@ -208,45 +163,44 @@ const Cat = (props) => {
           M175 190
           L185 190
           L180 195
-          z;
+          z
           "
-              dur={props.speed + "s"}
-              repeatCount="indefinite"
-            ></animate>
-          </path>
+            dur={props.speed + "s"}
+            repeatCount="indefinite"
+          ></animate>
+        </path>
 
-          <path
-            d="M180 195 L180 205"
-            stroke="black"
-            strokeWidth="2"
-          >
-            <animate
-              attributeName="d"
-              values="M180 195 L180 205;
+        <path
+          d="M180 195 L180 205"
+          stroke="black"
+          strokeWidth="2"
+        >
+          <animate
+            attributeName="d"
+            values="M180 195 L180 205;
                       M180 205 L180 215;
-                      M180 195 L180 205;
+                      M180 195 L180 205
                       "
-              dur={props.speed + "s"}
-              repeatCount="indefinite"
-            ></animate>
-          </path>
-        </g>
+            dur={props.speed + "s"}
+            repeatCount="indefinite"
+          ></animate>
+        </path>
 
         {/* 口 */}
         <path
-        id="cat-mouth"
-        d="M150 220
+          id="cat-mouth"
+          d="M150 220
            Q180 230,215 220
            Q180 250,150 220"
-        stroke="#333333"
-        strokeWidth="2"
-        fill="#fffc2e"
-        transform="rotate(-5, 180, 230)"
-        style={{display: 'none'}}
+          stroke="#333333"
+          strokeWidth="2"
+          fill="#fffc2e"
+          transform="rotate(-5, 180, 230)"
+          style={{ display: 'none' }}
         >
           <animate
-          attributeName="d"
-          values="
+            attributeName="d"
+            values="
             M150 220
             Q180 230,215 220
             Q180 250,150 220;
@@ -255,80 +209,78 @@ const Cat = (props) => {
             Q180 260,150 230;
             M150 220
             Q180 230,215 220
-            Q180 250,150 220;
+            Q180 250,150 220
           "
-          dur={props.speed + "s"}
-          repeatCount="indefinite"
+            dur={props.speed + "s"}
+            repeatCount="indefinite"
           ></animate>
         </path>
 
 
         {/* 左のひげ */}
-        <g>
-          <path
-            d="M140 210 L40 190"
-            id="hige-l1"
-            opacity="1"
-            fillOpacity="1"
-            stroke="#000000"
-            strokeWidth="2"
-            strokeOpacity="1"
-          >
-            <animate
-              attributeName="d"
-              values="
+        <path
+          d="M140 210 L40 190"
+          id="hige-l1"
+          opacity="1"
+          fillOpacity="1"
+          stroke="#000000"
+          strokeWidth="2"
+          strokeOpacity="1"
+        >
+          <animate
+            attributeName="d"
+            values="
               M140 210 L40 190;
               M140 220 L40 190;
-              M140 210 L40 190;
+              M140 210 L40 190
                       "
-              dur={props.speed + "s"}
-              repeatCount="indefinite"
-            />
-          </path>
+            dur={props.speed + "s"}
+            repeatCount="indefinite"
+          />
+        </path>
 
-          <path
-            d="M140 220 L30 210"
-            id="hige-l2"
-            opacity="1"
-            fillOpacity="1"
-            stroke="#000000"
-            strokeWidth="2"
-            strokeOpacity="1"
-          >
-            <animate
-              attributeName="d"
-              values="
+        <path
+          d="M140 220 L30 210"
+          id="hige-l2"
+          opacity="1"
+          fillOpacity="1"
+          stroke="#000000"
+          strokeWidth="2"
+          strokeOpacity="1"
+        >
+          <animate
+            attributeName="d"
+            values="
               M140 220 L30 210;
               M140 230 L30 210;
-              M140 220 L30 210;
+              M140 220 L30 210
                       "
-              dur={props.speed + "s"}
-              repeatCount="indefinite"
-            />
+            dur={props.speed + "s"}
+            repeatCount="indefinite"
+          />
 
-          </path>
+        </path>
 
-          <path
-            d="M140 230 L40 230"
-            id="hige-l3"
-            opacity="1"
-            fillOpacity="1"
-            stroke="#000000"
-            strokeWidth="2"
-            strokeOpacity="1"
-          >
-            <animate
-              attributeName="d"
-              values="
+        <path
+          d="M140 230 L40 230"
+          id="hige-l3"
+          opacity="1"
+          fillOpacity="1"
+          stroke="#000000"
+          strokeWidth="2"
+          strokeOpacity="1"
+        >
+          <animate
+            attributeName="d"
+            values="
               M140 230 L40 230;
               M140 240 L40 230;
-              M140 230 L40 230;
+              M140 230 L40 230
                       "
-              dur={props.speed + "s"}
-              repeatCount="indefinite"
-            />
-          </path>
-        </g>
+            dur={props.speed + "s"}
+            repeatCount="indefinite"
+          />
+        </path>
         {/* 右のひげ */}
         <path
           d="M220 210 L310 190"
@@ -344,7 +296,7 @@ const Cat = (props) => {
             values="
               M220 210 L310 190;
               M220 220 L310 190;
-              M220 210 L310 190;
+              M220 210 L310 190
                       "
             dur={props.speed + "s"}
             repeatCount="indefinite"
@@ -366,7 +318,7 @@ const Cat = (props) => {
             values="
               M220 220 L320 210;
               M220 230 L320 210;
-              M220 220 L320 210;
+              M220 220 L320 210
                       "
             dur={props.speed + "s"}
             repeatCount="indefinite"
@@ -388,7 +340,7 @@ const Cat = (props) => {
             values="
               M220 230 L310 230;
               M220 240 L310 230;
-              M220 230 L310 230;
+              M220 230 L310 230
                       "
             dur={props.speed + "s"}
             repeatCount="indefinite"
@@ -417,7 +369,7 @@ const Cat = (props) => {
               M130 300
               Q180 310,230 300;
               M160 300
-              Q180 310,200 300;
+              Q180 310,200 300
               "
             dur={props.speed}
             repeatCount="indefinite"
