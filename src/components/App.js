@@ -16,7 +16,7 @@ const posX = 0;
 const posY = 0;
 const width = 360;
 const height = 550;
-const bpmDefault = 100.0;
+const bpmDefault = 120.0;
 const bpmMin = 40;
 const bpmMax = 218;
 
@@ -24,10 +24,10 @@ const bpmMax = 218;
 let optsMembrane = {
   pitchDecay: 0.001,
   envelope: {
-    attack: 0.001 ,
+    attack: 0.001,
     decay: 0.1,
-    sustain: 0 ,
-    release: 0 
+    sustain: 0,
+    release: 0
   },
   volume: 35
 }
@@ -36,8 +36,8 @@ let optsMembrane = {
 let optsNoiseHihat = {
   type: "brown",
   envelope: {
-    attack: 0.001 ,
-    decay: 0.03 ,
+    attack: 0.001,
+    decay: 0.03,
     sustain: 0
   },
 }
@@ -145,6 +145,7 @@ function App() {
     const catEyeR = document.getElementById('right-eye');
     const catEyeL = document.getElementById('left-eye');
     const catMou = document.getElementById('cat-mouth');
+    const codeBlk = document.querySelectorAll('.footer-ele code');
 
     if (mode === 'light') {
       // ボタン
@@ -158,6 +159,9 @@ function App() {
       // 全体
       body.style.backgroundColor = "#121121";
       body.style.color = "#fefefe";
+      for (let code of codeBlk) {
+        code.setAttribute('style', 'background-color: #777777');
+      }
 
       // 猫周り
       catBodyLine.setAttribute('fill', '#121211');
@@ -176,6 +180,9 @@ function App() {
       // 全体
       body.style.backgroundColor = "#fefefe";
       body.style.color = "#121121";
+      for (let code of codeBlk) {
+        code.setAttribute('style', 'background-color: #ebebeb');
+      }
       // 猫周り
       catBodyLine.setAttribute('fill', '#ffffff');
       catBodyLine.setAttribute('stroke', '#000000');
@@ -234,12 +241,13 @@ function App() {
   }
 
   const playMeow = () => {
-    if (mode === 'light') {
-      meow2.play();
-    } else {
-      meow1.play();
+    if (!isMute) {
+      if (mode === 'light') {
+        meow2.play();
+      } else {
+        meow1.play();
+      }
     }
-    
   }
 
 

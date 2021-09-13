@@ -1,11 +1,13 @@
 .top-header {
   width: 100%;
+  min-width: 280px;
   height: 50px;
   text-align: center;
 }
 
 .top-header_title {
-  width:fit-content;
+  width: 100%;
+  max-width: 330px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bold;
   font-size: 2.2rem;
