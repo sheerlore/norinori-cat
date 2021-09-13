@@ -149,7 +149,7 @@ function App() {
 
     if (mode === 'light') {
       // ボタン
-      darkBtn.innerHTML = '<img src="./image/Moon.png" alt="moon" />';
+      darkBtn.innerHTML = '<img src="./image/moon.png" alt="moon" />';
       darkBtn.style.backgroundColor = "#fcdddb";
       playBtn.style.backgroundColor = "#fff199";
       soundBtn.style.backgroundColor = "#c0e4c9";
@@ -215,6 +215,7 @@ function App() {
           count++;
         }
       }, "4n").start(0);
+      Tone.Transport.start();
     }
     if (isMute) {
       soundBtn.innerHTML = '<img src="./image/soundo.png" alt="ts" />';
@@ -337,6 +338,7 @@ function App() {
         <StartStop onClick={switchPlay} type={control} />
         <DarkModeBtn onClick={switchDarkMode} mode={mode} />
       </div>
+      <iframe title="ap" src="https://raw.githubusercontent.com/anars/blank-audio/master/500-milliseconds-of-silence.mp3" allow="autoplay" id="audio"></iframe>
     </div>
   );
 }

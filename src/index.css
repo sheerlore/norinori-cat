@@ -21,3 +21,7 @@ p {
 input, button {
   cursor: pointer;
 }
+
+iframe {
+  display: none;
+}
