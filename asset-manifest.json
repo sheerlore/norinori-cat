@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/norinori-cat/static/css/main.db13dcd3.chunk.css",
+    "main.css": "/norinori-cat/static/css/main.1fc3503f.chunk.css",
     "main.js": "/norinori-cat/static/js/main.2108883c.chunk.js",
     "main.js.map": "/norinori-cat/static/js/main.2108883c.chunk.js.map",
     "runtime-main.js": "/norinori-cat/static/js/runtime-main.f77b8cf0.js",
@@ -8,14 +8,14 @@
     "static/js/2.9dddbca6.chunk.js": "/norinori-cat/static/js/2.9dddbca6.chunk.js",
     "static/js/2.9dddbca6.chunk.js.map": "/norinori-cat/static/js/2.9dddbca6.chunk.js.map",
     "index.html": "/norinori-cat/index.html",
-    "static/css/main.db13dcd3.chunk.css.map": "/norinori-cat/static/css/main.db13dcd3.chunk.css.map",
+    "static/css/main.1fc3503f.chunk.css.map": "/norinori-cat/static/css/main.1fc3503f.chunk.css.map",
     "static/js/2.9dddbca6.chunk.js.LICENSE.txt": "/norinori-cat/static/js/2.9dddbca6.chunk.js.LICENSE.txt",
     "static/media/BpmRange.css": "/norinori-cat/static/media/cathand.51ae0a0e.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.f77b8cf0.js",
     "static/js/2.9dddbca6.chunk.js",
-    "static/css/main.db13dcd3.chunk.css",
+    "static/css/main.1fc3503f.chunk.css",
     "static/js/main.2108883c.chunk.js"
   ]
 }
