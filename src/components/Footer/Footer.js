@@ -10,10 +10,12 @@ function Footer(props) {
         <p>BPMは手で入力、スライダーで制御できます。40~218まで対応してます</p>
         <p>BEATのボタンは猫の動きの速さが変わります。音は変わらず4分音符です</p>
         <p>真ん中の「菜の花色」のボタンは猫の動きの再生・停止です。</p>
-        <p>左の山「葵色」のボタンは音のミュートスイッチです。デフォルトでミュートです</p>
+        <p>左の「山葵色」のボタンは音のミュートスイッチです。デフォルトでミュートです</p>
         <p>右の「桜色」のボタンはダークモードに入るボタンです。猫の様子が変わります</p>
-        <p>注意：ごめんなさいー！
+        <p>ここに書いてないけど微妙に隠し機能入れました！探してみてね（スマホの人はすぐにわかるかも）</p>
+        <p>謝罪：ごめんなさいー！
           リズムがあまり正確ではないし、実装が下手なので全体的に不安定です。
+          猫かわいいでしょ？許して
         </p>
 
         <br />
@@ -30,11 +32,12 @@ function Footer(props) {
 
         <p>また、自作キーボードのREVIUNG5というキーボードで操作するとそれっぽくていい気分になります。</p>
         <p>遊舎工房さんで購入できます！以下キーボード購入ページのリンクです</p>
-        <a href="https://shop.yushakobo.jp/products/consign_reviung5">https://shop.yushakobo.jp/products/consign_reviung5</a>
-        <p>その際のキーマップは上記のやつと合わせてください！</p>
+        <a href="https://shop.yushakobo.jp/products/consign_reviung5">REVIUNG5購入ページ</a>
+        <p>その際のキーマップは上記のやつと合わせてください！QMKで編集できます。
+        </p>
         <p>自分が作ったhexファイルは一応ここに置いて置きます。使う場合は落としてください</p>
         <p>
-        <code>reviung5_Sheerlore.hex</code>というファイル名です。Githubのページに飛びます
+        <code>reviung5_Sheerlore.hex</code>というファイル名です。以下のリンクはGithubのページに飛びます
         </p>
         <a href="https://github.com/Sheerlore/reviung5_my_keymap/tree/main/for-norinori-cat">norinori-cat用hexファイル</a>
       </div>
@@ -58,6 +61,7 @@ function Footer(props) {
       </div>
       <div className="footer-ele">
         <p>Thank you! (- v - )</p>
+        <p>Copyright © 2021, Yuma Matsuzaki (uai) </p>
       </div>
     </footer>
   );
