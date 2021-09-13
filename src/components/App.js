@@ -172,7 +172,7 @@ function App() {
       setMode('dark');
     } else if (mode === 'dark') {
       // ボタン
-      darkBtn.innerHTML = '<img src="./image/sun.png" alt="moon" />';
+      darkBtn.innerHTML = '<img src="./image/sun.png" alt="sun" />';
       darkBtn.style.backgroundColor = "#ffb2b2";
       playBtn.style.backgroundColor = "#ffeb58";
       soundBtn.style.backgroundColor = "#8ec29b";
@@ -338,7 +338,6 @@ function App() {
         <StartStop onClick={switchPlay} type={control} />
         <DarkModeBtn onClick={switchDarkMode} mode={mode} />
       </div>
-      <iframe title="ap" src="https://raw.githubusercontent.com/anars/blank-audio/master/500-milliseconds-of-silence.mp3" allow="autoplay" id="audio"></iframe>
     </div>
   );
 }
